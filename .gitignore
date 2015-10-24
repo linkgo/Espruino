@@ -21,3 +21,5 @@ diffs/*
 .settings
 MDN_URLS.txt
 node_modules
+build.sh
+cscope.*
