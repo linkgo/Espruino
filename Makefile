@@ -514,6 +514,7 @@ else ifdef ESP8266_4MB
 EMBEDDED=1
 USE_NET=1
 USE_MATH=
+ESP8266_MQTT=1
 BOARD=ESP8266_12
 # Enable link-time optimisations (inlining across files) but don't go beyond -O2 'cause of
 # code size explosion, also -DLINK_TIME_OPTIMISATION leads to too big a firmware
