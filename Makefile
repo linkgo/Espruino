@@ -949,6 +949,10 @@ libs/network/js/network_js.c
  SOURCES += \
  libs/network/esp8266/network_esp8266.c\
  libs/network/esp8266/ota.c
+  ifdef ESP8266_MQTT
+    DEFINES += -DESP8266_MQTT
+    WRAPPERSOURCES += libs/network/esp8266/jswrap_mqtt.c
+  endif
  endif
 endif
 
