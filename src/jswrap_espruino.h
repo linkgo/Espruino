@@ -20,7 +20,11 @@ JsVarFloat jswrap_espruino_clip(JsVarFloat x, JsVarFloat min, JsVarFloat max);
 JsVarFloat jswrap_espruino_sum(JsVar *arr);
 JsVarFloat jswrap_espruino_variance(JsVar *arr, JsVarFloat mean);
 JsVarFloat jswrap_espruino_convolve(JsVar *a, JsVar *b, int offset);
+#ifdef USE_MATH
 void jswrap_espruino_FFT(JsVar *arrReal, JsVar *arrImag, bool inverse);
+#else
+inline void jswrap_espruino_FFT(JsVar *arrReal, JsVar *arrImag, bool inverse){}
+#endif /* !USE_MATH */
 
 JsVarFloat jswrap_espruino_interpolate(JsVar *array, JsVarFloat findex);
 JsVarFloat jswrap_espruino_interpolate2d(JsVar *array, int width, JsVarFloat x, JsVarFloat y);

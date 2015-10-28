@@ -14,7 +14,9 @@
  * ----------------------------------------------------------------------------
  */
 #include "jswrap_espruino.h"
+#ifdef USE_MATH
 #include "jswrap_math.h"
+#endif
 #include "jswrap_arraybuffer.h"
 #include "jswrapper.h"
 #include "jsinteractive.h"
@@ -302,6 +304,7 @@ JsVarFloat jswrap_espruino_convolve(JsVar *arr1, JsVar *arr2, int offset) {
   return conv;
 }
 
+#ifdef USE_MATH
 // http://paulbourke.net/miscellaneous/dft/
 /*
    This computes an in-place complex-to-complex FFT
@@ -473,6 +476,7 @@ void jswrap_espruino_FFT(JsVar *arrReal, JsVar *arrImag, bool inverse) {
     jsvIteratorFree(&it);
   }
 }
+#endif /* USE_MATH */
 
 /*JSON{
   "type" : "staticmethod",

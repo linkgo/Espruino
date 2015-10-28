@@ -636,3 +636,57 @@ size_t jsuGetFreeStack() {
 #endif
 }
 
+#ifndef USE_MATH
+/* Return 1 if x is not infinite and is not a NaN.  */
+
+int isfinite(x)
+double x;
+{
+#ifdef INFINITIES
+union
+	{
+	double d;
+	unsigned short s[4];
+	unsigned int i[2];
+	} u;
+
+u.d = x;
+
+if( sizeof(int) == 4 )
+	{
+#ifdef IBMPC
+	if( (u.i[1] & 0x7ff00000) != 0x7ff00000)
+		return 1;
+#endif
+#ifdef DEC
+	if( (u.s[3] & 0x7fff) != 0)
+		return 1;
+#endif
+#ifdef MIEEE
+	if( (u.i[0] & 0x7ff00000) != 0x7ff00000)
+		return 1;
+#endif
+	return(0);
+	}
+else
+	{
+#ifdef IBMPC
+	if( (u.s[3] & 0x7ff0) != 0x7ff0)
+		return 1;
+#endif
+#ifdef DEC
+	if( (u.s[3] & 0x7fff) != 0)
+		return 1;
+#endif
+#ifdef MIEEE
+	if( (u.s[0] & 0x7ff0) != 0x7ff0)
+		return 1;
+#endif
+	return(0);
+	}
+#else
+/* No INFINITY.  */
+return(1);
+#endif
+}
+#endif /* !USE_MATH */

@@ -17,7 +17,9 @@
 #include "jswrap_json.h"
 #include "jsinteractive.h"
 #include "jswrapper.h"
+#ifdef USE_MATH
 #include "jswrap_math.h" // for jswrap_math_mod
+#endif /* USE_MATH */
 #include "jswrap_object.h" // for jswrap_object_toString
 #include "jswrap_arraybuffer.h" // for jsvNewTypedArray
 
@@ -2626,7 +2628,9 @@ JsVar *jsvMathsOp(JsVar *a, JsVar *b, int op) {
       case '-': return jsvNewFromFloat(da-db);
       case '*': return jsvNewFromFloat(da*db);
       case '/': return jsvNewFromFloat(da/db);
+#ifdef USE_MATH
       case '%': return jsvNewFromFloat(jswrap_math_mod(da, db));
+#endif /* USE_MATH */
       case LEX_EQUAL:
       case LEX_NEQUAL:  { bool equal = da==db;
       if ((jsvIsNull(a) && jsvIsUndefined(b)) ||
