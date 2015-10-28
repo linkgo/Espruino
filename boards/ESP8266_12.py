@@ -32,7 +32,7 @@ chip = {
   'family'  : "ESP8266",
   'package' : "",
   'ram'     : 80,
-  'flash'   : 1024,
+  'flash'   : 4096,
   'speed'   : 80,
   'usart'   : 1,
   'spi'     : 0,
@@ -41,10 +41,10 @@ chip = {
   'dac'     : 0,
   'saved_code' : {
     # see https://github.com/espruino/Espruino/wiki/ESP8266-Design-Notes#flash-map-and-access
-    'address' : 0x7C000,
+    'address' : 0xFC000,
     'page_size' : 4096,
     'pages' : 3, # there are really 4 pages reserved but we should only need 3
-    'flash_available' : 492, # firmware can be up to this size
+    'flash_available' : 1004, # firmware can be up to this size
   },
 };
 # left-right, or top-bottom order
