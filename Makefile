@@ -520,7 +520,7 @@ OPTIMIZEFLAGS+=-O2 -std=gnu11 -fgnu89-inline -flto -fno-fat-lto-objects -Wl,--al
 ESP_FLASH_SIZE      ?= 4        # 4->4MB (512KB+512KB)
 ESP_FLASH_MODE      ?= 0        # 0->QIO, 2->DIO
 ESP_FLASH_FREQ_DIV  ?= 15       # 15->80Mhz
-ESP_FLASH_MAX       ?= 1028096  # max bin file for 1024KB flash partition: 1004KB
+ESP_FLASH_MAX       ?= 503808   # max bin file for 512KB flash partition: 492KB
 ET_FS               ?= 32m      # 32Mbit (4MB) flash size in esptool flash command
 ET_FF               ?= 80m      # 80Mhz flash speed in esptool flash command
 ET_BLANK            ?= 0x3FE000 # where to flash blank.bin to erase wireless settings
