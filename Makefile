@@ -1278,7 +1278,7 @@ ifeq ($(FAMILY),ESP8266)
 DEFINES += -DUSE_OPTIMIZE_PRINTF
 DEFINES += -D__ETS__ -DICACHE_FLASH -DXTENSA -DUSE_US_TIMER
 ESP8266=1
-LIBS += -lc -lgcc -lhal -lphy -lpp -lnet80211 -llwip_536 -lwpa -lmain
+LIBS += -lc -lgcc -lhal -lphy -lpp -lnet80211 -llwip_536 -lwpa -lmain -lssl
 CFLAGS+= -fno-builtin -fno-strict-aliasing \
 -Wno-maybe-uninitialized -Wno-old-style-declaration -Wno-conversion -Wno-unused-variable \
 -Wno-unused-parameter -Wno-ignored-qualifiers -Wno-discarded-qualifiers -Wno-float-conversion \
@@ -1439,12 +1439,21 @@ SOURCES += targets/esp8266/uart.c \
 	   libs/network/esp8266/network_esp8266.c
 # if using the hw_timer:   targets/esp8266/hw_timer.c \
 
+ifdef ESP8266_MQTT
+SOURCES += targets/esp8266/mqtt/mqtt.c \
+	   targets/esp8266/mqtt/mqtt_msg.c \
+	   targets/esp8266/mqtt/proto.c \
+	   targets/esp8266/mqtt/queue.c \
+	   targets/esp8266/mqtt/ringbuf.c \
+	   targets/esp8266/mqtt/utils.c
+endif # ESP8266_MQTT
+
 # The tool used for building the firmware and flashing
 ESPTOOL_CK ?= esptool-ck
 ESPTOOL    ?= $(ESP8266_SDK_ROOT)/esptool/esptool.py
 
 # Extra include directories specific to the ESP8266
-INCLUDE += -I$(ESP8266_SDK_ROOT)/include -I$(ROOT)/targets/esp8266
+INCLUDE += -I$(ESP8266_SDK_ROOT)/include -I$(ROOT)/targets/esp8266 -I$(ROOT)/targets/esp8266/mqtt/include
 endif # ESP8266
 
 export CC=$(CCPREFIX)gcc
