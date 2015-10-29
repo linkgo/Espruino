@@ -22,4 +22,5 @@ diffs/*
 MDN_URLS.txt
 node_modules
 build.sh
+ota.sh
 cscope.*
